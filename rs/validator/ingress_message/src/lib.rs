@@ -45,7 +45,7 @@ pub use internal::TimeProvider;
 ///   but a signature was provided.
 /// * [`RequestValidationError::CanisterNotInDelegationTargets`]: if the request targets a canister
 ///   that is not authorized in one of the delegations.
-pub trait HttpRequestVerifier<C> {
+pub trait HttpRequestVerifier<C>: Send + Sync {
     fn validate_request(&self, request: &HttpRequest<C>) -> Result<(), RequestValidationError>;
 }
 /// Top-level error that occur when verifying an HTTP request
